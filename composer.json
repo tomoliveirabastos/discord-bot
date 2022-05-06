@@ -13,6 +13,7 @@
     },
     "require": {
         "team-reflex/discord-php": "^7.0",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "guzzlehttp/guzzle": "^7.4"
     }
 }
