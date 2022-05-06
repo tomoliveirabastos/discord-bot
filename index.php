@@ -24,6 +24,26 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
 
        $name = $_ENV['USER_NAME'];
 
+       $pregText = preg_replace("[^a-zA-Z0-9]", "", $text);
+
+       if ($pregText === "bomdiatomzinha") {
+              $message->reply("Bom dia sr(a) {$message->author->username}");
+
+              return;
+       }
+
+       if ($pregText === "boatardetomzinha") {
+              $message->reply("Boa tarde sr(a) {$message->author->username}");
+
+              return;
+       }
+
+       if ($pregText === "boanoitetomzinha") {
+              $message->reply("Boa noite sr(a) {$message->author->username}");
+
+              return;
+       }
+
        if ($actionMessage->isAuthor($message, $name)) {
 
               $text = strtolower($text);
