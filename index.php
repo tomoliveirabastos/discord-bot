@@ -24,7 +24,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
 
        $name = $_ENV['USER_NAME'];
 
-       $pregText = preg_replace("[^a-zA-Z0-9]", "", $text);
+       $pregText = preg_replace("/[^a-zA-Z0-9]/", "", $text);
 
        if ($pregText === "bomdiatomzinha") {
               $message->reply("Bom dia sr(a) {$message->author->username}");
