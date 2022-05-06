@@ -28,6 +28,8 @@ foreach ($channelsId as $channelId) {
               $handleMessage->sendMessage($channelId, $msg);
        } catch (\Exception $e) {
 
-              echo $e->getMessage();
+              $error = $e->getMessage();
+
+              file_put_contents(__DIR__ . "/error.txt", $error, FILE_APPEND);
        }
 }
