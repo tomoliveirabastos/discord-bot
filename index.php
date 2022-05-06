@@ -11,7 +11,7 @@ use Discord\WebSockets\Event;
 
 $discord = new Discord(['token' => $_ENV['TOKEN']]);
 
-$discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) {
+$discord->on(Event::MESSAGE_CREATE, function (Message $message) {
        $temp_file = __DIR__ . "/files.txt";
 
        if ($message->author->bot) return;
@@ -35,7 +35,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord
               }
 
               if ($text === "responda tomzinha") {
-                     $message->reply("Olá sr(a) {$name}");
+                     $message->reply("Olá sr(a) {$message->author->username}");
 
                      return;
               }
@@ -44,7 +44,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord
 
                      if (!file_exists($temp_file)) {
 
-                            $message->reply("Olá sr(a) {$name}, nenhuma mensagem registrada");
+                            $message->reply("Olá sr(a) {$message->author->username}, nenhuma mensagem registrada");
 
                             return;
                      }
@@ -61,11 +61,15 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord
 
        $now = date('Y-m-d H:i:s');
 
-       $msg = $discord::VERSION . " - {$now} - {$message->author->username}: {$message->content}" . PHP_EOL;
+       $msg = "{$now} - {$message->author->username}: {$message->content}" . PHP_EOL;
 
        echo $msg;
 
-       if ($actionMessage->verificaSeFoiMencionado($text, $name) || $actionMessage->verificaSeFoiMencionado($text, $_ENV['USER_ID'])) {
+       if (
+              $actionMessage->verificaSeFoiMencionado($text, $name) ||
+              $actionMessage->verificaSeFoiMencionado($text, $_ENV['USER_ID']) ||
+              $actionMessage->verificaSeFoiMencionado($text, $_ENV['USER_HELPER'])
+       ) {
 
               $message->reply("Essa mensagem foi registrada, o sr(a) {$name} vai ler depois");
 
