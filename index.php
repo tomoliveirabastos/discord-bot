@@ -28,7 +28,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord
 
               $text = strtolower($text);
 
-              if ($text = "help") {
+              if ($text === "help") {
                      $message->reply("1 - responda tomzinha, 2 - tomzinha, leia as mensagens, 3 - help");
 
                      return;
