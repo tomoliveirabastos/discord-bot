@@ -24,7 +24,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
 
        $name = $_ENV['USER_NAME'];
 
-       $pregText = preg_replace("/[^a-zA-Z0-9]/", "", $text);
+       $pregText = strtolower(preg_replace("/[^a-zA-Z0-9]/", "", $text));
 
        if ($pregText === "bomdiatomzinha") {
               $message->reply("Bom dia sr(a) {$message->author->username}");
@@ -46,21 +46,19 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
 
        if ($actionMessage->isAuthor($message, $name)) {
 
-              $text = strtolower($text);
-
-              if ($text === "help") {
+              if ($pregText === "help") {
                      $message->reply("1 - responda tomzinha, 2 - tomzinha, leia as mensagens, 3 - help");
 
                      return;
               }
 
-              if ($text === "responda tomzinha") {
+              if ($pregText === "respondatomzinha") {
                      $message->reply("Olá sr(a) {$message->author->username}");
 
                      return;
               }
 
-              if ($text === "tomzinha, leia as mensagens") {
+              if ($pregText === "tomzinhaleiaasmensagens") {
 
                      if (!file_exists($temp_file)) {
 
