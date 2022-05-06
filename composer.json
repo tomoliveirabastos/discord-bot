@@ -1,0 +1,18 @@
+{
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "require": {
+        "team-reflex/discord-php": "^7.0",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
