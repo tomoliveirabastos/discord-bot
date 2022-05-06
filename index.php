@@ -44,6 +44,12 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
               return;
        }
 
+       if (is_integer(strpos($pregText, "vrau")) === "vrau") {
+              $message->reply("VRAU!!!");
+
+              return;
+       }
+
        if ($actionMessage->isAuthor($message, $name)) {
 
               if ($pregText === "help") {
