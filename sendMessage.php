@@ -30,6 +30,6 @@ foreach ($channelsId as $channelId) {
 
               $error = $e->getMessage();
 
-              file_put_contents(__DIR__ . "/error.txt", $error, FILE_APPEND);
+              file_put_contents(__DIR__ . "/error.txt", $error . PHP_EOL, FILE_APPEND);
        }
 }
