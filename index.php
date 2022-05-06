@@ -44,7 +44,7 @@ $discord->on(Event::MESSAGE_CREATE, function (Message $message) {
               return;
        }
 
-       if (is_integer(strpos($pregText, "vrau")) === "vrau") {
+       if (is_integer(strpos($pregText, "vrau"))) {
               $message->reply("VRAU!!!");
 
               return;
